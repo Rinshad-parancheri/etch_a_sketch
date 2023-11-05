@@ -1,0 +1,154 @@
+/* Reset all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* General styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+}
+
+
+.container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  border: 2px solid #FF0000;
+  background-color: #C0C0C0;
+
+}
+
+
+.tools {
+  display: flex;
+  flex-direction: column;
+  justify-self: left;
+  align-items: center;
+  align-items: space-evenly;
+  padding: 20px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  margin: 10px;
+  width: 200px;
+  font-size: 18px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Button styling */
+.btn {
+  margin: 10px;
+  padding: 10px;
+  height: 80px;
+  font-size: inherit;
+  width: 80px;
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+.btn:nth-of-type(1) {
+  background-color: black;
+  color: #FFFFFF;
+}
+
+.btn:nth-of-type(2) {
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  color: #FFFFFF;
+}
+
+.btn:nth-of-type(3) {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+.btn:nth-of-type(4) {
+  background-color: #808080;
+  color: #FFFFFF;
+}
+
+
+button,
+input[type='color'] {
+  transition: transform 0.1s ease-in-out;
+}
+
+#size {
+  margin: 15px;
+  font-size: 25px;
+}
+
+input[type='range'] {
+  width: 100px;
+  height: 10px;
+  -webkit-appearance: none;
+  background-color: #e0e0e0;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  height: 10px;
+  border: 1px solid black;
+  border-radius: 25px;
+  background: white;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 25px;
+  margin-top: -8px;
+  background: red;
+}
+
+button:hover,
+input[type='color']:hover {
+  transform: scale(1.05);
+}
+
+input[type='color']:active {
+  transition: transform 0.05s ease-in-out;
+  transform: scale(1);
+}
+
+/* Color input styling */
+input[type='color'] {
+  -webkit-appearance: none;
+  width: 80px;
+  height: 113px;
+  flex-grow: 0;
+  border: none;
+  background-color: #e0e0e0;
+}
+
+input[type='color']::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type='color']::-webkit-color-swatch {
+  border: none;
+  border-radius: 50px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+.sketch {
+  justify-self: center;
+  display: grid;
+  width: 500px;
+  background-color: white;
+  height: 500px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  margin: 10px;
+}
+
