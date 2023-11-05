@@ -1,5 +1,7 @@
 class Sketch {
     constructor() {
+        this.currentMode = 'Brush';
+
         this.COLOR_PICKER = document.getElementById('colorPicker');
         this.BTN = document.querySelectorAll(".btn");
         this.SIZE = document.getElementById("size");
@@ -28,45 +30,43 @@ class Sketch {
 
         this.BTN.forEach(btn => {
             btn.onclick = e => {
-                this.setUpTheFuncitonForEachBtn(e.target.innerText);
+                this.setUpCurrentMode(e.target.innerText);
             };
         });
-
-        this.COLOR_PICKER.onchange = (e) => this.brushColor = e.target.value
+      
+       this.COLOR_PICKER.onchange = (e) => {
+        this.brushColor = e.target.value;
+        this.setUpCurrentMode('Brush');
+        }
 
         this.grids.forEach(grid => {
-            grid.onmouseover = (e) => grid.style.backgroundColor = this.brushColor;
-        });
+            grid.onmousemove = (e) => { this.updateFunctionalityOfCurrentMode(grid) }
+        })
 
         this.RANGE.onmousemove = (e) => this.SIZE.innerText = `${e.target.value} X ${e.target.value}`;
         this.RANGE.onchange = (e) => this.setUpGrid(e.target.value);
     }
 
-    setUpTheFuncitonForEachBtn(value) {
-        if (value === 'Eraser') {
-            this.brushColor = 'white';
-            this.setUpEventListener();
-        } else if (value === 'Clear') {
-            this.SKETCH_PAD.innerHTML = '';
-            this.setUpGrid(this.RANGE.value);
-        } else if (value === 'Brush') {
-            this.brushColor = this.COLOR_PICKER.value;
-            this.setUpEventListener();
+    updateFunctionalityOfCurrentMode(grid) {
+        if (this.currentMode === 'Eraser') {
+            grid.style.backgroundColor = 'white';
+        } else if (this.currentMode === 'Rainbow') {
+            const red = Math.floor(Math.random() * 256);
+            const green = Math.floor(Math.random() * 256);
+            const blue = Math.floor(Math.random() * 256);
+            grid.style.backgroundColor = `rgb(${red},${green},${blue})`;
         } else {
-            this.rainbowColorBrush();
+            grid.style.backgroundColor = this.brushColor;
         }
-    }
+    };
 
-    rainbowColorBrush() {
-        console.log(this.grids)
-        this.grids.forEach(grid => {
-            grid.onmouseover = (e) => {
-                const red = Math.floor(Math.random() * 256);
-                const green = Math.floor(Math.random() * 256);
-                const blue = Math.floor(Math.random() * 256);
-                grid.style.backgroundColor = `rgb(${red},${green},${blue})`;
-            };
-        })
+    setUpCurrentMode(value) {
+        if (value == 'Clear') {
+            this.setUpGrid(this.RANGE.value);
+        } else {
+            this.currentMode = value
+        }
+
     }
 }
 
